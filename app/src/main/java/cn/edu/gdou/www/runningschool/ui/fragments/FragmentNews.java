@@ -1,11 +1,8 @@
 package cn.edu.gdou.www.runningschool.ui.fragments;
 
-import android.graphics.Color;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,21 +15,21 @@ import cn.edu.gdou.www.runningschool.R;
 import cn.edu.gdou.www.runningschool.ui.adapter.MyViewPagerAdapter;
 
 
-public class FragmentTwo extends BaseFragment {
+public class FragmentNews extends BaseFragment {
     ViewPager viewPager;
     TabLayout tabLayout;
     ArrayList<MyFragment>  fragments;
     MyViewPagerAdapter adapter;
     ImageView mImageView;
 
-    private static final String TAG = FragmentTwo.class.getSimpleName();//"CommonFrameFragment"
+    private static final String TAG = FragmentNews.class.getSimpleName();//"CommonFrameFragment"
     private TextView textView;
 
     @Override
     protected View initView() {
         Log.e(TAG,"其他Fragment页面被初始化了...");
         LayoutInflater mInflater = LayoutInflater.from(mContext);
-        View contentView  = mInflater.inflate(R.layout.layout_two,null);
+        View contentView  = mInflater.inflate(R.layout.layout_news,null);
 
         viewPager = (ViewPager) contentView.findViewById(R.id.viewPager);
         tabLayout = (TabLayout) contentView.findViewById(R.id.tabLayout);

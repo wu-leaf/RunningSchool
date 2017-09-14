@@ -1,13 +1,10 @@
 package cn.edu.gdou.www.runningschool.ui.activity;
 
-import android.content.Intent;
-import android.content.pm.LabeledIntent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -16,10 +13,10 @@ import java.util.List;
 
 import cn.edu.gdou.www.runningschool.R;
 import cn.edu.gdou.www.runningschool.ui.fragments.BaseFragment;
-import cn.edu.gdou.www.runningschool.ui.fragments.FragmentFour;
-import cn.edu.gdou.www.runningschool.ui.fragments.FragmentOne;
-import cn.edu.gdou.www.runningschool.ui.fragments.FragmentThree;
-import cn.edu.gdou.www.runningschool.ui.fragments.FragmentTwo;
+import cn.edu.gdou.www.runningschool.ui.fragments.FragmentMine;
+import cn.edu.gdou.www.runningschool.ui.fragments.FragmentMain;
+import cn.edu.gdou.www.runningschool.ui.fragments.FragmentOrders;
+import cn.edu.gdou.www.runningschool.ui.fragments.FragmentNews;
 
 public class MainActivity extends AppCompatActivity {
     long ExitTime;
@@ -59,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.rb_main_frame://
                     position = 0;
                     break;
-                case R.id.rb_news_frame://
+                case R.id.rb_orders_frame://
                     position = 1;
                     break;
                 case R.id.rb_search_frame://
@@ -126,10 +123,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initFragment() {
         mBaseFragment = new ArrayList<>();
-        mBaseFragment.add(new FragmentOne());
-        mBaseFragment.add(new FragmentTwo());
-        mBaseFragment.add(new FragmentThree());
-        mBaseFragment.add(new FragmentFour());
+        mBaseFragment.add(new FragmentMain());
+        mBaseFragment.add(new FragmentOrders());
+        mBaseFragment.add(new FragmentNews());
+        mBaseFragment.add(new FragmentMine());
     }
 
     private void initView() {

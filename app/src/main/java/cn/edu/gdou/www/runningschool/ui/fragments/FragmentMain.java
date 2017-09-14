@@ -1,16 +1,10 @@
 package cn.edu.gdou.www.runningschool.ui.fragments;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +21,7 @@ import cn.edu.gdou.www.runningschool.R;
 import cn.edu.gdou.www.runningschool.utils.DensityUtil;
 
 
-public class FragmentOne extends BaseFragment {
+public class FragmentMain extends BaseFragment {
     private RelativeLayout evaluation_ly;
     private RelativeLayout agent_ly;
     private ArrayList<ImageView> imageViews;
@@ -73,7 +67,7 @@ public class FragmentOne extends BaseFragment {
             handler.sendEmptyMessageDelayed(0, 4000);
         }
     };
-    private static final String TAG = FragmentOne.class.getSimpleName();//"CommonFrameFragment"
+    private static final String TAG = FragmentMain.class.getSimpleName();//"CommonFrameFragment"
     private TextView textView;
 
     @Override
