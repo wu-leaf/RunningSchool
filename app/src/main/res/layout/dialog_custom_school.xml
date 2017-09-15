@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="#F0F0F0"
+    android:orientation="vertical"
+    >
+<TextView
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:text="请输入你的学校"
+    android:textSize="15sp"/>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="70dp">
+        <EditText
+            android:id="@+id/edit_school"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:maxLength="12"
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:hint="北大？清华？"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+        <TextView
+            android:id="@+id/school_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:text="英雄莫问出处"/>
+        <TextView
+            android:id="@+id/school_cancel"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/school_commit"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

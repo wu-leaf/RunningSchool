@@ -26,10 +26,13 @@
                 android:text="头像"/>
             <FrameLayout
                 android:layout_width="wrap_content"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/icon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+
                     android:src="@mipmap/ic_launcher"/>
             </FrameLayout>
             <ImageView
@@ -67,6 +70,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
@@ -107,6 +111,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
@@ -144,6 +149,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
@@ -221,6 +227,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/schoolday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
