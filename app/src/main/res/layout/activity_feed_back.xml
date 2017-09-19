@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffffff"
+              android:orientation="vertical">
+    <include layout="@layout/titlebar_feedback"></include>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#efefef"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <EditText
+        android:id="@+id/feedback_content"
+        android:background="#bbbbbb"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_width="320dp"
+
+        android:hint="必填，详细反馈"
+        android:layout_height="100dp"/>
+
+
+
+    <EditText
+        android:id="@+id/feedback_contact"
+        android:background="#bbbbbb"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_width="260dp"
+
+        android:hint="联系方式：QQ，邮件或电话"
+        android:layout_height="30dp"/>
+
+
+
+
+
+
+
+</LinearLayout>

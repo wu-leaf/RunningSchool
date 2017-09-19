@@ -80,6 +80,7 @@
                 card_view:cardCornerRadius="4dp"
                 card_view:cardElevation="2dp">
                 <LinearLayout
+                    android:id="@+id/mine_wallet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -115,6 +116,7 @@
                 card_view:cardElevation="2dp">
 
                 <LinearLayout
+                    android:id="@+id/mine_msg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -146,6 +148,7 @@
                         android:layout_gravity="center_horizontal"
                         />
                     <LinearLayout
+                        android:id="@+id/mine_help"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:orientation="horizontal">
@@ -173,6 +176,7 @@
                         android:layout_gravity="center_horizontal"
                         />
                     <LinearLayout
+                        android:id="@+id/mine_feedback"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:orientation="horizontal">
@@ -186,6 +190,7 @@
                             android:src="@drawable/feedback"
                             />
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="用户反馈"
@@ -200,6 +205,7 @@
                         android:layout_gravity="center_horizontal"
                         />
                     <LinearLayout
+                        android:id="@+id/mine_checknew"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:orientation="horizontal">
@@ -212,13 +218,15 @@
                             android:layout_marginLeft="15dp"
                             android:src="@drawable/check"
                             />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="检查更新"
                             android:layout_marginLeft="10dp"
                             android:layout_gravity="center"
-                            android:textSize="20sp"/>
+                            android:textSize="20sp"
+                            android:id="@+id/textView"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -235,6 +243,7 @@
                 card_view:cardCornerRadius="4dp"
                 card_view:cardElevation="2dp">
                 <LinearLayout
+                    android:id="@+id/mine_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">

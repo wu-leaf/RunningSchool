@@ -12,22 +12,26 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.0" />
-    <TextView
+    <ImageView
+        android:id="@+id/feedback_back"
         android:layout_width="wrap_content"
-        android:drawableTop="@drawable/sousou"
+        android:src="@drawable/back"
         android:layout_height="wrap_content"
-        android:text="扫一扫"/>
-    <android.support.v7.widget.SearchView
+        />
+    <TextView
         android:layout_width="0dp"
         android:layout_weight="28.0"
-        android:queryHint="法律"
+        android:text="意见反馈"
+        android:layout_marginLeft="120dp"
+        android:textSize="25sp"
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:id="@+id/feedback_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableTop="@drawable/msg"
-        android:text="消息"/>
+        android:textSize="20sp"
+        android:text="发送"/>
     <Button
         android:alpha="0"
         android:layout_width="0dp"
