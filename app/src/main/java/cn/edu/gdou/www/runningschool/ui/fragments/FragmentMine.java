@@ -1,13 +1,24 @@
 package cn.edu.gdou.www.runningschool.ui.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import net.lemonsoft.lemonbubble.LemonBubble;
+import net.lemonsoft.lemonbubble.enums.LemonBubbleLayoutStyle;
+import net.lemonsoft.lemonbubble.enums.LemonBubbleLocationStyle;
+import net.lemonsoft.lemonhello.LemonHello;
+import net.lemonsoft.lemonhello.LemonHelloAction;
+import net.lemonsoft.lemonhello.LemonHelloInfo;
+import net.lemonsoft.lemonhello.LemonHelloView;
+import net.lemonsoft.lemonhello.interfaces.LemonHelloActionDelegate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,7 +98,23 @@ public class FragmentMine extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.mine_checknew:
-                Toast.makeText(getActivity(),"mine_checknew",Toast.LENGTH_SHORT).show();
+
+             LemonBubble.getRoundProgressBubbleInfo()
+                        .setLocationStyle(LemonBubbleLocationStyle.BOTTOM)
+                        .setLayoutStyle(LemonBubbleLayoutStyle.ICON_LEFT_TITLE_RIGHT)
+                        .setBubbleSize(200, 50)
+                        .setProportionOfDeviation(0.1f)
+
+                        .setTitle("正在请求服务器...")
+                        .show(getActivity());
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        LemonBubble.showRight(getActivity(), "目前已经是最新版，请君慢用", 2000);
+                    }
+                }, 1500);
+
+
                 break;
             case R.id.mine_msg:
                 Toast.makeText(getActivity(),"mine_msg",Toast.LENGTH_SHORT).show();

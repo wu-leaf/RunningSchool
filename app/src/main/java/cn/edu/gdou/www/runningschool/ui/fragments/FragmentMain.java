@@ -1,9 +1,14 @@
 package cn.edu.gdou.www.runningschool.ui.fragments;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +17,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+
 import cn.edu.gdou.www.runningschool.R;
+import cn.edu.gdou.www.runningschool.ui.activity.PostingActivity;
 import cn.edu.gdou.www.runningschool.utils.DensityUtil;
 
 
@@ -77,6 +85,21 @@ public class FragmentMain extends BaseFragment {
         viewpager = (ViewPager) contentView.findViewById(R.id.viewpager);
         tv_title = (TextView) contentView.findViewById(R.id.tv_title);
         ll_point_group = (LinearLayout) contentView.findViewById(R.id.ll_point_group);
+
+
+        Toolbar toolbar = (Toolbar) contentView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) contentView.findViewById(R.id.add_orders);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), PostingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         //ViewPager的使用
         //1.在布局文件中定义ViewPager

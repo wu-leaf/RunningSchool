@@ -4,8 +4,10 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,18 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
+
+import net.lemonsoft.lemonbubble.LemonBubble;
+import net.lemonsoft.lemonbubble.LemonBubbleGlobal;
+import net.lemonsoft.lemonbubble.enums.LemonBubbleLayoutStyle;
+import net.lemonsoft.lemonbubble.enums.LemonBubbleLocationStyle;
+import net.lemonsoft.lemonhello.LemonHello;
+import net.lemonsoft.lemonhello.LemonHelloAction;
+import net.lemonsoft.lemonhello.LemonHelloGlobal;
+import net.lemonsoft.lemonhello.LemonHelloInfo;
+import net.lemonsoft.lemonhello.LemonHelloView;
+import net.lemonsoft.lemonhello.adapter.LemonHelloEventDelegateAdapter;
+import net.lemonsoft.lemonhello.interfaces.LemonHelloActionDelegate;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -94,6 +108,10 @@ public class SettingActivity extends AppCompatActivity {
         mCustomInputSchoolFragment = CustomInputSchoolFragment.newInstance();
 
         mGlideRequestManager = Glide.with(this);
+
+        LemonHelloGlobal.statusBarColor = Color.parseColor("#3399FF");
+        LemonBubbleGlobal.statusBarColor = Color.parseColor("#3399FF");
+
     }
 
     @OnClick({R.id.back, R.id.save_setting, R.id.ly_icon,
@@ -106,7 +124,22 @@ public class SettingActivity extends AppCompatActivity {
                 break;
             case R.id.save_setting:
                 //发起网络请求，把数据全部丢给后台
-                Toast.makeText(SettingActivity.this, "save_setting", Toast.LENGTH_SHORT).show();
+                LemonHello.getSuccessHello("保存成功", "恭喜您，您所填写的数据已经全部提交成功")
+                        .setContentFontSize(14)
+                        .addAction(new LemonHelloAction("我知道啦", new LemonHelloActionDelegate() {
+                            @Override
+                            public void onClick(LemonHelloView helloView, LemonHelloInfo helloInfo, LemonHelloAction helloAction) {
+                                helloView.hide();
+                            }
+                        }))
+                        .setEventDelegate(new LemonHelloEventDelegateAdapter() {
+                            @Override
+                            public void onMaskTouch(LemonHelloView helloView, LemonHelloInfo helloInfo) {
+                                super.onMaskTouch(helloView, helloInfo);
+                                helloView.hide();
+                            }
+                        })
+                        .show(SettingActivity.this);
 
                 break;
             case R.id.ly_icon:
@@ -144,7 +177,34 @@ public class SettingActivity extends AppCompatActivity {
                 break;
             case R.id.btn_log_out:
                 //退出登录
-                Toast.makeText(SettingActivity.this, "btn_log_out", Toast.LENGTH_SHORT).show();
+                LemonHello.getInformationHello("您确定要退出登录吗？", "退出登录后您将无法接收到当前用户的所有推送消息。")
+                        .addAction(new LemonHelloAction("取消", new LemonHelloActionDelegate() {
+                            @Override
+                            public void onClick(LemonHelloView helloView, LemonHelloInfo helloInfo, LemonHelloAction helloAction) {
+                                helloView.hide();
+                            }
+                        }))
+                        .addAction(new LemonHelloAction("我要退出", Color.RED, new LemonHelloActionDelegate() {
+                            @Override
+                            public void onClick(LemonHelloView helloView, LemonHelloInfo helloInfo, LemonHelloAction helloAction) {
+                                helloView.hide();
+                                // 提示框使用了LemonBubble，请您参考：https://github.com/1em0nsOft/LemonBubble4Android
+                                LemonBubble.getRoundProgressBubbleInfo()
+                                        .setLocationStyle(LemonBubbleLocationStyle.BOTTOM)
+                                        .setLayoutStyle(LemonBubbleLayoutStyle.ICON_LEFT_TITLE_RIGHT)
+                                        .setBubbleSize(200, 50)
+                                        .setProportionOfDeviation(0.1f)
+                                        .setTitle("正在请求服务器...")
+                                        .show(SettingActivity.this);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        LemonBubble.showRight(SettingActivity.this, "退出成功，欢迎您下次登录", 2000);
+                                    }
+                                }, 1500);
+                            }
+                        }))
+                        .show(SettingActivity.this);
 
                 break;
         }
