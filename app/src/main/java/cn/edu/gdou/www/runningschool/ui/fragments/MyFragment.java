@@ -95,6 +95,14 @@ public class MyFragment extends Fragment{
                 view = inflater.inflate(R.layout.layout_shiyanshi,null);
                 initClick(view);
                 break;
+            case "6":
+                view = inflater.inflate(R.layout.layout_published_task,null);
+                initClick(view);
+                break;
+            case "7":
+                view = inflater.inflate(R.layout.layout_received_task,null);
+                initClick(view);
+                break;
         }
 
         return view;

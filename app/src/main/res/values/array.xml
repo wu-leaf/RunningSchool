@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spingarr">
+    <item>学习交流</item>
+    <item>技术服务</item>
+    <item>江湖救急</item>
+    <item>跑腿代劳</item>
+    <item>二手交易</item>
+    <item>情感交流</item>
+    </string-array>
+
+    <string-array name="spingarr2">
+        <item>紧急</item>
+        <item>一天内</item>
+        <item>三天内</item>
+        <item>一周内</item>
+        <item>一个月内</item>
+        <item>随意</item>
+    </string-array>
+</resources>

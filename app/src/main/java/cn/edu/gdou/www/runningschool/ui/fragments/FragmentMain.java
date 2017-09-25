@@ -1,10 +1,9 @@
 package cn.edu.gdou.www.runningschool.ui.fragments;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,17 +18,32 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.edu.gdou.www.runningschool.R;
 import cn.edu.gdou.www.runningschool.ui.activity.PostingActivity;
 import cn.edu.gdou.www.runningschool.utils.DensityUtil;
 
 
 public class FragmentMain extends BaseFragment {
+    @BindView(R.id.main_xxjl)
+    ImageView mMainXxjl;
+    @BindView(R.id.main_jsfh)
+    ImageView mMainJsfh;
+    @BindView(R.id.main_jhjj)
+    ImageView mMainJhjj;
+    @BindView(R.id.main_ptdl)
+    ImageView mMainPtdl;
+    @BindView(R.id.main_esjy)
+    ImageView mMainEsjy;
+    @BindView(R.id.main_qgjl)
+    ImageView mMainQgjl;
+
     private RelativeLayout evaluation_ly;
     private RelativeLayout agent_ly;
     private ArrayList<ImageView> imageViews;
@@ -44,7 +58,7 @@ public class FragmentMain extends BaseFragment {
             R.drawable.pic1,
             R.drawable.pic2,
             R.drawable.pic3
-            };
+    };
     /**
      * 上一次高亮显示的位置
      */
@@ -98,7 +112,6 @@ public class FragmentMain extends BaseFragment {
                 startActivity(intent);
             }
         });
-
 
 
         //ViewPager的使用
@@ -160,6 +173,38 @@ public class FragmentMain extends BaseFragment {
     protected void initData() {
         super.initData();
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @OnClick({R.id.main_xxjl, R.id.main_jsfh, R.id.main_jhjj, R.id.main_ptdl, R.id.main_esjy, R.id.main_qgjl})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.main_xxjl:
+                Toast.makeText(getActivity(),"学习交流",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_jsfh:
+                Toast.makeText(getActivity(),"技术服务",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_jhjj:
+                Toast.makeText(getActivity(),"江湖救急",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_ptdl:
+                Toast.makeText(getActivity(),"跑腿代劳",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_esjy:
+                Toast.makeText(getActivity(),"二手交易",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_qgjl:
+                Toast.makeText(getActivity(),"情感交流",Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
 
@@ -266,10 +311,12 @@ public class FragmentMain extends BaseFragment {
 
             return imageView;
         }
+
         /**
          * 比较view和object是否同一个实例
-         * @param view 页面
-         * @param object  这个方法instantiateItem返回的结果
+         *
+         * @param view   页面
+         * @param object 这个方法instantiateItem返回的结果
          * @return
          */
         @Override
@@ -281,11 +328,13 @@ public class FragmentMain extends BaseFragment {
 //            }
             return view == object;
         }
+
         /**
          * 释放资源
+         *
          * @param container viewpager
-         * @param position 要释放的位置
-         * @param object 要释放的页面
+         * @param position  要释放的位置
+         * @param object    要释放的页面
          */
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {

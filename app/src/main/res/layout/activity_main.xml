@@ -14,10 +14,11 @@
         android:layout_weight="1.11" />
     <!--底部的RadioGroup-->
     <RadioGroup
+
         android:id="@+id/rg_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fafafa"
+        android:background="@drawable/radiogroup_boder"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="5dp">

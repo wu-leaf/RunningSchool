@@ -11,6 +11,7 @@
     android:layout_gravity="center"
     android:layout_height="wrap_content"
     android:text="请输入用户名"
+    android:textColor="#2b2b2b"
     android:textSize="15sp"/>
 
     <RelativeLayout
@@ -18,14 +19,17 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_height="70dp">
+        android:layout_height="wrap_content">
         <EditText
             android:id="@+id/edit_name"
-            android:background="#ffffff"
+            android:background="@drawable/textview_boder"
             android:layout_width="match_parent"
             android:maxLines="3"
+            android:gravity="top|left"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:hint="输入你的大名"/>
 
     </RelativeLayout>
@@ -60,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="确定"
+            android:textColor="#2b2b2b"
             android:layout_centerVertical="true"
             android:textSize="20sp"/>
     </RelativeLayout>

@@ -15,22 +15,22 @@
         />
 
     <EditText
+        android:background="@drawable/textview_boder"
         android:id="@+id/feedback_content"
-        android:background="#bbbbbb"
         android:layout_marginTop="20dp"
         android:paddingLeft="10dp"
-
+        android:paddingTop="10dp"
+        android:gravity="top|left"
         android:layout_gravity="center_horizontal"
         android:layout_width="320dp"
 
         android:hint="必填，详细反馈"
-        android:layout_height="100dp"/>
-
+        android:layout_height="150dp"/>
 
 
     <EditText
+        android:background="@drawable/textview_boder"
         android:id="@+id/feedback_contact"
-        android:background="#bbbbbb"
         android:layout_marginTop="20dp"
         android:paddingLeft="10dp"
 
@@ -39,11 +39,6 @@
 
         android:hint="联系方式：QQ，邮件或电话"
         android:layout_height="30dp"/>
-
-
-
-
-
 
 
 </LinearLayout>
