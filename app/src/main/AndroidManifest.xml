@@ -59,6 +59,8 @@
         </activity>
         <activity android:name=".ui.activity.PostingActivity">
         </activity>
+        <activity android:name=".ui.activity.OrderDetailsActivity">
+        </activity>
     </application>
 
 </manifest>

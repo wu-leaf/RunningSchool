@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/titlebar"
+              android:background="#ffffff"
+              android:gravity="center"
+              android:orientation="horizontal">
+    <Button
+        android:alpha="0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0" />
+    <ImageView
+        android:id="@+id/order_details_back"
+        android:layout_width="wrap_content"
+        android:src="@drawable/back"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="28.0"
+        android:text="任务详情"
+        android:layout_marginLeft="120dp"
+        android:textSize="25sp"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:alpha="0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0" />
+
+</LinearLayout>

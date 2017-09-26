@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.lemonsoft.lemonbubble.LemonBubbleGlobal;
 import net.lemonsoft.lemonhello.LemonHello;
@@ -66,26 +67,52 @@ public class PostingActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.send_posting:
-                //发起网络请求，把数据全部丢给后台
-
-                //成功回调
-                LemonHello.getSuccessHello("发布成功", "请耐心等待后台咪咪的审核")
-                        .setContentFontSize(14)
-                        .addAction(new LemonHelloAction("我知道啦", new LemonHelloActionDelegate() {
-                            @Override
-                            public void onClick(LemonHelloView helloView, LemonHelloInfo helloInfo, LemonHelloAction helloAction) {
-                                helloView.hide();
-                            }
-                        }))
-                        .setEventDelegate(new LemonHelloEventDelegateAdapter() {
-                            @Override
-                            public void onMaskTouch(LemonHelloView helloView, LemonHelloInfo helloInfo) {
-                                super.onMaskTouch(helloView, helloInfo);
-                                helloView.hide();
-                            }
-                        })
-                        .show(PostingActivity.this);
+                send_posting();
                 break;
         }
+    }
+
+    private void send_posting() {
+        //先检查输入项是否为空
+        if(isEnterOk()){
+            //发起网络请求，把数据全部丢给后台
+
+            //成功回调
+            LemonHello.getSuccessHello("发布成功", "请耐心等待后台咪咪的审核")
+                    .setContentFontSize(14)
+                    .addAction(new LemonHelloAction("我知道啦", new LemonHelloActionDelegate() {
+                        @Override
+                        public void onClick(LemonHelloView helloView, LemonHelloInfo helloInfo, LemonHelloAction helloAction) {
+                            helloView.hide();
+                        }
+                    }))
+                    .setEventDelegate(new LemonHelloEventDelegateAdapter() {
+                        @Override
+                        public void onMaskTouch(LemonHelloView helloView, LemonHelloInfo helloInfo) {
+                            super.onMaskTouch(helloView, helloInfo);
+                            helloView.hide();
+                        }
+                    })
+                    .show(PostingActivity.this);
+        }else{
+            Toast.makeText(PostingActivity.this,"输入不允许为空",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+    //检查输入项是否正常
+    private boolean isEnterOk() {
+        if (mPostTitle.getText().toString().trim().isEmpty()){
+            Toast.makeText(PostingActivity.this,"标题不能为空",Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (mPostContent.getText().toString().trim().isEmpty()){
+            Toast.makeText(PostingActivity.this,"任务内容不能为空",Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (mPostSalary.getText().toString().trim().isEmpty()){
+            Toast.makeText(PostingActivity.this,"给点小费还是很应该的吧",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

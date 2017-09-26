@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="160dp"
+              android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_margin="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="40dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/order_title"
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
+                android:textSize="20sp"
+                android:textColor="#2b2b2b"
+                android:layout_height="wrap_content"
+                android:text="标题"/>
+            <TextView
+                android:id="@+id/order_money"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textColor="#2b2b2b"
+                android:layout_height="wrap_content"
+                android:text="$3.00"/>
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textColor="#2b2b2b"
+                android:layout_height="wrap_content"
+                android:text="未接单"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="如果你无法简洁的表达你的想法，那只能说明你还不够了解他。-阿尔伯特-爱因斯坦"/>
+    </LinearLayout>
+
+</LinearLayout>
