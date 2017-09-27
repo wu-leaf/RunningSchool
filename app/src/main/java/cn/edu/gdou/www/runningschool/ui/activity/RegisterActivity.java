@@ -1,19 +1,5 @@
 package cn.edu.gdou.www.runningschool.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import cn.bmob.sms.BmobSMS;
-import cn.bmob.sms.exception.BmobException;
-import cn.bmob.sms.listener.RequestSMSCodeListener;
-import cn.bmob.sms.listener.VerifySMSCodeListener;
-import cn.edu.gdou.www.runningschool.MyApplication;
-import cn.edu.gdou.www.runningschool.R;
-import cn.edu.gdou.www.runningschool.data.bean.Test;
-import cn.edu.gdou.www.runningschool.service.RegisterCodeTimerService;
-import cn.edu.gdou.www.runningschool.utils.Constants;
-
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -26,33 +12,50 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Build;
-
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 
-
-
 import org.json.JSONArray;
-
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.bmob.sms.BmobSMS;
+import cn.bmob.sms.exception.BmobException;
+import cn.bmob.sms.listener.RequestSMSCodeListener;
+import cn.bmob.sms.listener.VerifySMSCodeListener;
+import cn.edu.gdou.www.runningschool.MyApplication;
+import cn.edu.gdou.www.runningschool.R;
+import cn.edu.gdou.www.runningschool.data.bean.Test;
+import cn.edu.gdou.www.runningschool.service.RegisterCodeTimerService;
+import cn.edu.gdou.www.runningschool.utils.Constants;
+import dmax.dialog.SpotsDialog;
 
 
 public class RegisterActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
+    private SpotsDialog mDialog;
+
+
+
+    @BindView(R.id.go_to_login)
+    TextView mGoToLogin;
     private Context mContext;
     private EditText phoneNumber;
     private EditText nickName;
@@ -91,29 +94,32 @@ public class RegisterActivity extends AppCompatActivity
         }
     };
     private RegisterTask mAuthTask = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        ButterKnife.bind(this);
         mContext = getApplicationContext();
         BmobSMS.initialize(mContext, "b9e919ab441d4c974538c7af085447cb");
         initViews();
 
     }
+
     private void initViews() {
         mProgressView = findViewById(R.id.register_progress);
         mIntent = new Intent(mContext, RegisterCodeTimerService.class);
-        nickName = (EditText)findViewById(R.id.register_nickname);
-        phoneNumber = (EditText)findViewById(R.id.register_phone);
-        Et_authCode = (EditText)findViewById(R.id.register_authcode);
-        passWord = (EditText)findViewById(R.id.register_password);
-        btnActionRegister = (Button)findViewById(R.id.register_in_button);
-        btnGetAuthCode = (Button)findViewById(R.id.getAuthCode);
+        nickName = (EditText) findViewById(R.id.register_nickname);
+        phoneNumber = (EditText) findViewById(R.id.register_phone);
+        Et_authCode = (EditText) findViewById(R.id.register_authcode);
+        passWord = (EditText) findViewById(R.id.register_password);
+        btnActionRegister = (Button) findViewById(R.id.register_in_button);
+        btnGetAuthCode = (Button) findViewById(R.id.getAuthCode);
         btnGetAuthCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //先判断输入的手机号码是否正确
-                if(isPhoneValid(phoneNumber.getText().toString())){
+                if (isPhoneValid(phoneNumber.getText().toString())) {
                     // 将按钮设置为不可用状态
                     btnGetAuthCode.setEnabled(false);
                     // 启动倒计时的服务
@@ -128,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity
                                     }
                                 }
                             });
-                }else {
+                } else {
                     phoneNumber.setError("请输入正确的手机号码");
                 }
 
@@ -190,20 +196,19 @@ public class RegisterActivity extends AppCompatActivity
             cancel = true;
         }
 
-        if (TextUtils.isEmpty(authcode)){
+        if (TextUtils.isEmpty(authcode)) {
             Et_authCode.setError("验证码不能为空");
             focusView = Et_authCode;
             cancel = true;
         }
-        if (mTest.getaTest()!= null){
-            if (mTest.getaTest()){
+        if (mTest.getaTest() != null) {
+            if (mTest.getaTest()) {
                 Et_authCode.setError("验证码错误");
                 focusView = Et_authCode;
                 cancel = true;
                 // new MyApplication().setTest(true);
             }
         }
-
 
 
         if (cancel) {
@@ -221,7 +226,7 @@ public class RegisterActivity extends AppCompatActivity
                                 //显示一个进度转,启动一个后台任务
                                 //执行用户的登录尝试。
                                 showProgress(true);
-                                mAuthTask = new RegisterTask(nickname,phone,password);
+                                mAuthTask = new RegisterTask(nickname, phone, password);
                                 mAuthTask.execute((Void) null);
                             } else {
                                 Log.e("bmob", "验证失败：code =" + ex.getErrorCode() + ",msg = " + ex.getLocalizedMessage());
@@ -234,8 +239,6 @@ public class RegisterActivity extends AppCompatActivity
             return;
         }
     }
-
-
 
 
     private boolean isPasswordValid(String password) {
@@ -279,18 +282,21 @@ public class RegisterActivity extends AppCompatActivity
         //TODO: Replace this with your own logic
         return true;
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         // 注册广播
         registerReceiver(mUpdateReceiver, updateIntentFilter());
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         // 移除注册
         unregisterReceiver(mUpdateReceiver);
     }
+
     // 注册广播
     private static IntentFilter updateIntentFilter() {
         final IntentFilter intentFilter = new IntentFilter();
@@ -298,6 +304,7 @@ public class RegisterActivity extends AppCompatActivity
         intentFilter.addAction(RegisterCodeTimerService.END_RUNNING);
         return intentFilter;
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -305,7 +312,7 @@ public class RegisterActivity extends AppCompatActivity
 
 
     //这个考虑更换
-    private void velleyPost(final String nickname,final String phone, final String password){
+    private void velleyPost(final String nickname, final String phone, final String password) {
         String url = Constants.REGISTER_URL;
         JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
@@ -317,14 +324,14 @@ public class RegisterActivity extends AppCompatActivity
             public void onErrorResponse(VolleyError error) {
 
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> map = new HashMap<>();
+                Map<String, String> map = new HashMap<>();
                 //将请求参数填入map
-                map.put("nickname",nickname);
-                map.put("phone",phone);
-                map.put("password",password);
+                map.put("nickname", nickname);
+                map.put("phone", phone);
+                map.put("password", password);
                 return map;
             }
         };
@@ -348,6 +355,15 @@ public class RegisterActivity extends AppCompatActivity
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
+
+    @OnClick(R.id.go_to_login)
+    public void onClick() {
+
+        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public class RegisterTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mNickname;
@@ -355,7 +371,7 @@ public class RegisterActivity extends AppCompatActivity
         private final String mPhone;
 
 
-        RegisterTask(String nickname, String phone,String password) {
+        RegisterTask(String nickname, String phone, String password) {
             mNickname = nickname;
             mPhone = phone;
             mPassword = password;
@@ -363,26 +379,20 @@ public class RegisterActivity extends AppCompatActivity
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mDialog = new SpotsDialog(RegisterActivity.this,"loading");
+            mDialog.show();
+        }
+
+        @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-        /*    try {
 
-
-            } catch (InterruptedException e) {
-                return false;
-            }*/
-
-         /*   for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }*/
 
             // TODO: register the new account here.
-            velleyPost(mNickname,mPhone,mPassword);//可以换成 retrofit
+            velleyPost(mNickname, mPhone, mPassword);//可以换成 retrofit
             return true;
         }
 

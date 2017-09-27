@@ -1,21 +1,19 @@
 package cn.edu.gdou.www.runningschool.ui.activity;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -32,7 +30,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.edu.gdou.www.runningschool.R;
+import dmax.dialog.SpotsDialog;
 
 
 /**
@@ -40,6 +42,8 @@ import cn.edu.gdou.www.runningschool.R;
  */
 public class LoginActivity extends AppCompatActivity
         implements LoaderCallbacks<Cursor> {
+
+    private SpotsDialog mDialog;
 
 
     /**
@@ -49,6 +53,8 @@ public class LoginActivity extends AppCompatActivity
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
+    @BindView(R.id.go_register)
+    TextView mGoRegister;
     /**
      * 记录登录的任务,以确保如果请求,我们可以取消它
      */
@@ -65,6 +71,7 @@ public class LoginActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
         // Set up the login form.
         mPhoneView = (AutoCompleteTextView) findViewById(R.id.phone);
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -94,7 +101,7 @@ public class LoginActivity extends AppCompatActivity
         mForget_pw.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,ForgetAndResetActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ForgetAndResetActivity.class);
                 startActivity(intent);
             }
         });
@@ -147,7 +154,7 @@ public class LoginActivity extends AppCompatActivity
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
+           // showProgress(true);
             mAuthTask = new UserLoginTask(phone, password);
             mAuthTask.execute((Void) null);
         }
@@ -245,6 +252,13 @@ public class LoginActivity extends AppCompatActivity
         mPhoneView.setAdapter(adapter);
     }
 
+    @OnClick(R.id.go_register)
+    public void onClick() {
+        Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -271,12 +285,22 @@ public class LoginActivity extends AppCompatActivity
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mDialog = new SpotsDialog(LoginActivity.this,"loading....");
+            mDialog.show();
+        }
+
+        @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: 访问网络，进行登录
 
             try {
                 //发起网络请求
+
                 Thread.sleep(2);//暂时
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
 
             } catch (InterruptedException e) {
                 return false;
@@ -297,7 +321,7 @@ public class LoginActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
+            //showProgress(false);
 
             if (success) {
                 finish();

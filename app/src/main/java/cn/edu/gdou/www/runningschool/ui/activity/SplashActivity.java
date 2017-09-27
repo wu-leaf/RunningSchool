@@ -65,7 +65,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onFinish() {
                 tvSkip.setText(String.format(getResources().getString(R.string.skip), 0));
-                startActivity(new Intent(mContext, MainActivity.class));
+                startActivity(new Intent(mContext, LoginActivity.class));
                 finish();
             }
         };
@@ -90,7 +90,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             if (timer != null)
                 timer.cancel();
 
-            startActivity(new Intent(mContext, MainActivity.class));
+            startActivity(new Intent(mContext, LoginActivity.class));
             finish();
         }
     }

@@ -44,11 +44,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing">
         </activity>
-        <activity android:name=".ui.activity.LoginActivity">
+        <activity android:name=".ui.activity.LoginActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.activity.RegisterActivity">
+        <activity android:name=".ui.activity.RegisterActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.activity.ForgetAndResetActivity">
+        <activity android:name=".ui.activity.ForgetAndResetActivity"
+                  android:screenOrientation="portrait">
         </activity>
 
         <service android:name=".service.RegisterCodeTimerService"/>
